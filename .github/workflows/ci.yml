@@ -22,7 +22,6 @@ jobs:
     - name: Push Docker image
       run: docker tag flask-devops-app ${{ secrets.DOCKER_USERNAME }}/flask-devops-app:latest && docker push ${{ secrets.DOCKER_USERNAME }}/flask-devops-app:latest
 
-
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
@@ -47,7 +46,6 @@ jobs:
 
     - name: Build Docker image
       run: docker build . -t flask-devops-app
-
 
 
 
