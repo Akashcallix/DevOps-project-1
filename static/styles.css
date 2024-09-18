@@ -51,10 +51,19 @@ main {
     margin: 20px auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     flex: 1;
+    border-radius: 8px; /* Rounded corners */
+}
+
+/* Section Styling */
+section {
+    margin-bottom: 20px;
 }
 
 h2 {
     color: #4CAF50;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 p {
@@ -92,11 +101,7 @@ footer a:hover {
     text-decoration: underline;
 }
 
-/* Styling for sections in about.html */
-section {
-    margin-bottom: 20px;
-}
-
+/* Styling for Lists */
 ul {
     list-style-type: square;
     padding-left: 20px;
@@ -110,15 +115,7 @@ img {
     margin: 0 auto;
 }
 
-/* Adding colorful boxes */
-section h2 {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-/* Responsive Grid Layout for about.html */
+/* Responsive Grid Layout */
 .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -143,11 +140,6 @@ section h2 {
 .screenshots {
     grid-column: 1 / span 2;
     text-align: center;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
 }
 
 /* Media Queries for Smaller Screens */

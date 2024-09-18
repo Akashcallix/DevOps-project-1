@@ -11,6 +11,11 @@ def home():
     return render_template('index.html')
 
 
+@app.route('/personal-info')
+def personal_info():
+    return render_template('personal_info.html')
+
+
 @app.route('/about')
 def about():
     return render_template('about.html')

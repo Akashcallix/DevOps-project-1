@@ -1,51 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body>
-    <header>
-        <h1>About This Project</h1>
-        <nav>
-            <a href="/">Home</a>
-            <a href="/about">About</a>
-        </nav>
-    </header>
-    <main>
-        <div class="grid-container">
-            <section class="overview">
-                <h2>Project Overview</h2>
-                <p>Details about the project...</p>
-            </section>
-            <div class="features-tech">
-                <section class="features">
-                    <h2>Features</h2>
-                    <ul>
-                        <li>Feature 1</li>
-                        <li>Feature 2</li>
-                    </ul>
-                </section>
-                <section class="tech-stack">
-                    <h2>Tech Stack</h2>
-                    <p>Technologies used in this project...</p>
-                </section>
-            </div>
-        </div>
-        <section class="screenshots">
-            <h2>Screenshots/Demo</h2>
-            <img src="{{ url_for('static', filename='screenshot.png') }}" alt="Screenshot">
-        </section>
-    </main>
-    <footer>
-        <p>Contact:</p>
-        <ul>
-            <li>Email: <a href="mailto:here.akashdeep@gmail.com">here.akashdeep@gmail.com</a></li>
-            <li>Phone: <a href="tel:+919876424378">+91-9876424378</a></li> 
-            <li>LinkedIn: <a href="https://www.linkedin.com/in/akash-deep-1b539a200" target="_blank">LinkedIn Profile</a></li> 
-        </ul>
-    </footer>
-</body>
-</html>
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="container">
+    <h1 class="display-4">About Us</h1>
+    <p class="lead">Here is some information about the project and its creators.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum.</p>
+</div>
+{% endblock %}
