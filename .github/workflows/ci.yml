@@ -35,17 +35,13 @@ jobs:
       run: |
         pytest
 
-    - name: Convert repository owner to lowercase
-      id: lowercase_owner
-      run: echo "REPO_OWNER=$(echo ${{github.repository_owner}} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
-
-    - name: Log in to GitHub Container Registry
-      run: echo "${{secrets.GHCR_PAT}}" | docker login ghcr.io -u ${{env.REPO_OWNER}} --password-stdin
+    - name: Log in to Docker Hub
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
     - name: Build Docker image
       run: |
-        docker build -t ghcr.io/${{env.REPO_OWNER}}/flask-devops-app:latest .
+        docker build -t docker.io/${{ secrets.DOCKER_USERNAME }}/flask-devops-app:latest .
 
     - name: Push Docker image
       run: |
-        docker push ghcr.io/${{env.REPO_OWNER}}/flask-devops-app:latest
+        docker push docker.io/${{ secrets.DOCKER_USERNAME }}/flask-devops-app:latest
