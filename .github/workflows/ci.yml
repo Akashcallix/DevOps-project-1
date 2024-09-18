@@ -1,3 +1,51 @@
+# name: CI/CD Pipeline
+
+# on:
+#   push:
+#     branches:
+#       - main
+#   pull_request:
+#     branches:
+#       - main
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - name: Checkout code
+#       uses: actions/checkout@v2
+
+#     - name: Set up Python
+#       uses: actions/setup-python@v2
+#       with:
+#         python-version: '3.9'
+
+#     - name: Install dependencies
+#       run: |
+#         python -m pip install --upgrade pip
+#         pip install -r requirements.txt
+#         pip install flake8 pytest
+
+#     - name: Lint code
+#       run: |
+#         flake8 .
+
+#     - name: Run tests
+#       run: |
+#         pytest
+
+#     - name: Log in to Docker Hub
+#       run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+#     - name: Build Docker image
+#       run: |
+#         docker build -t docker.io/${{ secrets.DOCKER_USERNAME }}/flask-devops-app:latest .
+
+#     - name: Push Docker image
+#       run: |
+#         docker push docker.io/${{ secrets.DOCKER_USERNAME }}/flask-devops-app:latest
+
 name: CI/CD Pipeline
 
 on:
@@ -35,12 +83,20 @@ jobs:
       run: |
         pytest
 
+  docker_build:
+    runs-on: ubuntu-latest
+    needs: build  # This makes sure the docker_build job runs after the build job
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
     - name: Log in to Docker Hub
       run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
     - name: Build Docker image
       run: |
-        docker build -t docker.io/${{ secrets.DOCKER_USERNAME }}/flask-devops-app:latest .
+        docker build --no-cache -t docker.io/${{ secrets.DOCKER_USERNAME }}/flask-devops-app:latest .
 
     - name: Push Docker image
       run: |
