@@ -12,18 +12,8 @@ services:
     image: prom/prometheus:latest
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
-      - ./monitoring-configs/prometheus/alerts.yml:/etc/prometheus/alerts.yml
     ports:
       - "9090:9090"
-    networks:
-      - monitoring
-
-  alertmanager:
-    image: prom/alertmanager:latest
-    volumes:
-      - ./monitoring-configs/prometheus/alertmanager.yml:/etc/alertmanager/config.yml
-    ports:
-      - "9093:9093"
     networks:
       - monitoring
 
