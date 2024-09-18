@@ -1,22 +1,10 @@
-# from flask import Flask
-
-# app = Flask(__name__)
-
-# @app.route('/')
-# def home():
-#     return "Welcome to my Flask App!"
-
-# @app.route('/about')
-# def about():
-#     return "This is a simple DevOps project to showcase CI/CD and Docker."
-
-# if __name__ == '__main__':
-#     app.run(host='0.0.0.0', port=5000)
-
-
 from flask import Flask, render_template
+from prometheus_flask_exporter import PrometheusMetrics
 
 app = Flask(__name__)
+
+# Initialize Prometheus metrics exporter
+metrics = PrometheusMetrics(app)
 
 @app.route('/')
 def home():
@@ -26,45 +14,6 @@ def home():
 def about():
     return render_template('about.html')
 
+# Run the application
 if __name__ == '__main__':
-    app.run(debug=True)
-
-
-# from flask import Flask
-
-# app = Flask(__name__)
-
-# @app.route('/')
-# def home():
-#     return "Hello, World!"
-
-# @app.route('/about')
-# def about():
-#     return "This is a simple DevOps project to showcase CI/CD and Docker."
-
-# if __name__ == "__main__":
-#     app.run(debug=True)
-
-
-
-
-
-
-
-
-
-
-# from flask import Flask
-
-# app = Flask(__name__)
-
-# @app.route('/')
-# def home():
-#     return "Welcome to my Flask App!"
-
-# @app.route('/about')
-# def about():
-#     return "This is a simple DevOps project to showcase CI/CD and Docker."
-
-# if __name__ == '__main__':
-#     app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000, debug=True)

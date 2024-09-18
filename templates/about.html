@@ -15,30 +15,37 @@
         </nav>
     </header>
     <main>
-        <section>
-            <h2>Project Overview</h2>
-            <p>Details about the project...</p>
-        </section>
-        <section>
-            <h2>Features</h2>
-            <ul>
-                <li>Feature 1</li>
-                <li>Feature 2</li>
-                <!-- Add more features here -->
-            </ul>
-        </section>
-        <section>
-            <h2>Tech Stack</h2>
-            <p>Technologies used in this project...</p>
-        </section>
-        <section>
+        <div class="grid-container">
+            <section class="overview">
+                <h2>Project Overview</h2>
+                <p>Details about the project...</p>
+            </section>
+            <div class="features-tech">
+                <section class="features">
+                    <h2>Features</h2>
+                    <ul>
+                        <li>Feature 1</li>
+                        <li>Feature 2</li>
+                    </ul>
+                </section>
+                <section class="tech-stack">
+                    <h2>Tech Stack</h2>
+                    <p>Technologies used in this project...</p>
+                </section>
+            </div>
+        </div>
+        <section class="screenshots">
             <h2>Screenshots/Demo</h2>
             <img src="{{ url_for('static', filename='screenshot.png') }}" alt="Screenshot">
-            <!-- Add links or more images as needed -->
         </section>
     </main>
     <footer>
-        <p>Contact: <a href="mailto:your-email@example.com">your-email@example.com</a></p>
+        <p>Contact:</p>
+        <ul>
+            <li>Email: <a href="mailto:here.akashdeep@gmail.com">here.akashdeep@gmail.com</a></li>
+            <li>Phone: <a href="tel:+919876424378">+91-9876424378</a></li> 
+            <li>LinkedIn: <a href="https://www.linkedin.com/in/akash-deep-1b539a200" target="_blank">LinkedIn Profile</a></li> 
+        </ul>
     </footer>
 </body>
 </html>
