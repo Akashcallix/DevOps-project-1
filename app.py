@@ -3,7 +3,6 @@ from prometheus_flask_exporter import PrometheusMetrics
 
 app = Flask(__name__)
 
-# Initialize Prometheus metrics exporter
 metrics = PrometheusMetrics(app)
 
 @app.route('/')
