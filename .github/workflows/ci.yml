@@ -8,6 +8,10 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+  checks: write
+
 env:
   IMAGE_REG: docker.io
   IMAGE_REPO: ${{ secrets.DOCKER_USERNAME }}/flask-devops-app
@@ -51,6 +55,7 @@ jobs:
       if: ${{ always() && !env.ACT }}
       with:
         files: test-results.xml
+        github_token: ${{ secrets.GITHUB_TOKEN }}  # Use the default GitHub token
 
   docker_build:
     runs-on: ubuntu-latest
