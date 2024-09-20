@@ -39,8 +39,26 @@ nav a {
     font-size: 18px;
 }
 
-nav a:hover {
-    text-decoration: underline;
+/* Dropdown Menu Styles */
+.navbar-nav .nav-item.dropdown .dropdown-menu {
+    display: none; /* Initially hidden */
+    position: absolute;
+    background-color: #4c6faf; /* Match header color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-nav .nav-item.dropdown:hover .dropdown-menu {
+    display: block; /* Show on hover */
+}
+
+/* Dropdown Item Styles */
+.dropdown-item {
+    color: white; /* Text color */
+    padding: 10px 20px;
+}
+
+.dropdown-item:hover {
+    background-color: #45a049; /* Darker green on hover */
 }
 
 /* Main Content */
