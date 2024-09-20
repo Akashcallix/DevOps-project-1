@@ -18,10 +18,10 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3  # Updated to v3
 
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4  # Updated to v4
       with:
         python-version: '3.9'
 
@@ -40,7 +40,7 @@ jobs:
         pytest --junitxml=test-results.xml
 
     - name: Upload test results
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3  # Updated to v3
       if: ${{ always() && !env.ACT }}
       with:
         name: test-results
@@ -58,7 +58,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3  # Updated to v3
 
     - name: Create datestamp image tag
       run: echo "IMAGE_TAG=$(date +%d-%m-%Y.%H%M)" >> $GITHUB_ENV
