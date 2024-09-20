@@ -22,10 +22,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3  # Updated to v3
+        uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v4  # Updated to v4
+        uses: actions/setup-python@v4
         with:
           python-version: '3.9'
 
@@ -36,15 +36,13 @@ jobs:
           pip install flake8 pytest
 
       - name: Lint code
-        run: |
-          flake8 .
+        run: flake8 .
 
       - name: Run tests
-        run: |
-          pytest --junitxml=test-results.xml
+        run: pytest --junitxml=test-results.xml
 
       - name: Upload test results
-        uses: actions/upload-artifact@v3  # Updated to v3
+        uses: actions/upload-artifact@v3
         if: ${{ always() && !env.ACT }}
         with:
           name: test-results
@@ -55,46 +53,44 @@ jobs:
         if: ${{ always() && !env.ACT }}
         with:
           files: test-results.xml
-          github_token: ${{ secrets.GITHUB_TOKEN }}  # Use the default GitHub token
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
   build:
     runs-on: ubuntu-latest
-    needs: test  # This ensures the build job runs after the test job completes
+    needs: test
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3  # Updated to v3
+        uses: actions/checkout@v3
 
       - name: Create datestamp image tag
         run: echo "IMAGE_TAG=$(date +%d-%m-%Y.%H%M)" >> $GITHUB_ENV
 
       - name: Build the application (if any specific build steps)
-        run: |
-          # Add any additional build steps here
-          echo "Build step completed."
+        run: echo "Build step completed."
 
   docker_build:
     runs-on: ubuntu-latest
-    needs: build  # This ensures the docker_build job runs after the build job completes
+    needs: build
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3  # Updated to v3
+        uses: actions/checkout@v3
 
       - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login $IMAGE_REG -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
       - name: Build Docker image
         run: |
-          docker build --no-cache -t $IMAGE_REG/${{ secrets.DOCKER_USERNAME }}/flask-devops-app:${{ env.IMAGE_TAG }} .
+          docker build --no-cache -t $IMAGE_REPO:${{ env.IMAGE_TAG }} .
 
       - name: Push Docker image
         if: github.ref == 'refs/heads/main'
         run: |
-          docker push $IMAGE_REG/${{ secrets.DOCKER_USERNAME }}/flask-devops-app:${{ env.IMAGE_TAG }}
+          docker push $IMAGE_REPO:${{ env.IMAGE_TAG }}
 
       - name: Push latest tag
         if: github.ref == 'refs/heads/main'
         run: |
-          docker tag $IMAGE_REG/${{ secrets.DOCKER_USERNAME }}/flask-devops-app:${{ env.IMAGE_TAG }} $IMAGE_REG/${{ secrets.DOCKER_USERNAME }}/flask-devops-app:latest
-          docker push $IMAGE_REG/${{ secrets.DOCKER_USERNAME }}/flask-devops-app:latest
+          docker tag $IMAGE_REPO:${{ env.IMAGE_TAG }} $IMAGE_REPO:latest
+          docker push $IMAGE_REPO:latest
