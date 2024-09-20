@@ -1,8 +1,8 @@
 Flask==2.1.1
 pytest==8.3.3
-Werkzeug==2.1.2
+Werkzeug==2.1.2  # Make sure this is compatible
 flake8==4.0.1
 prometheus_flask_exporter==0.18.0
 Flask-SQLAlchemy==2.5.1
-Flask-Bcrypt==0.7.1
+Flask-Bcrypt==1.0.0  # Update to a version that supports new Werkzeug
 Flask-Login==0.6.2
