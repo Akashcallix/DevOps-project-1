@@ -47,7 +47,6 @@
 #         docker push docker.io/${{ secrets.DOCKER_USERNAME }}/flask-devops-app:latest
 
 name: CI/CD Pipeline
-
 on:
   push:
     branches:
