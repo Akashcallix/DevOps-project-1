@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* Show dropdown on hover */
+        .navbar-nav .nav-item.dropdown:hover .dropdown-menu {
+            display: block;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -16,20 +22,13 @@
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             Menu
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="/">Home</a>
                             <a class="dropdown-item" href="/about">About</a>
                             <a class="dropdown-item" href="/personal-info">Personal Info</a>
-                            {% if current_user.is_authenticated %}
-                                <a class="dropdown-item" href="/dashboard">Dashboard</a>
-                                <a class="dropdown-item" href="/logout">Logout</a>
-                            {% else %}
-                                <a class="dropdown-item" href="/login">Login</a>
-                                <a class="dropdown-item" href="/register">Register</a>
-                            {% endif %}
                         </div>
                     </li>
                 </ul>

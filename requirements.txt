@@ -3,7 +3,7 @@ pytest==8.3.3
 Werkzeug==2.1.2
 flake8==4.0.1
 prometheus_flask_exporter==0.18.0
-Flask-SQLAlchemy==2.5.1
-Flask-Bcrypt==1.0.0
-Flask-Login==0.6.2
-SQLAlchemy==1.4.42  # Specify a compatible version
+# Flask-SQLAlchemy==2.5.1
+# Flask-Bcrypt==1.0.0
+# Flask-Login==0.6.2
+# SQLAlchemy==1.4.42  
