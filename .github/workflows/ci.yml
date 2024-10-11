@@ -42,7 +42,7 @@ jobs:
         run: pytest --junitxml=test-results.xml
 
       - name: Upload test results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: ${{ always() && !env.ACT }}
         with:
           name: test-results
