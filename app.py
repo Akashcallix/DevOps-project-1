@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, flash, request
+from flask import Flask, render_template
 from prometheus_flask_exporter import PrometheusMetrics
 # from flask_sqlalchemy import SQLAlchemy
 # from flask_bcrypt import Bcrypt
